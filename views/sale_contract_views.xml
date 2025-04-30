@@ -2,14 +2,12 @@
 <odoo>
     <data>
 
-        <!-- VISTA LISTA -->
+        <!-- VISTA LISTA PRINCIPAL -->
         <record id="view_sale_contract_list" model="ir.ui.view">
             <field name="name">sale.contract.list</field>
             <field name="model">sale.contract</field>
-            <!-- Tipo correcto en Odoo 18 -->
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <!-- El nodo raíz debe llamarse <list>, no <tree> -->
                 <list string="Contratos de venta">
                     <field name="name"/>
                     <field name="partner_id"/>
@@ -53,12 +51,13 @@
                             <page string="Residuos autorizados">
                                 <field name="line_ids"
                                        context="{'default_contract_id': active_id}">
-                                    <tree editable="bottom">
+                                    <!-- ⬇️ Cambiado <tree> → <list> -->
+                                    <list editable="bottom">
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
                                         <field name="quantity"/>
                                         <field name="uom_id"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>

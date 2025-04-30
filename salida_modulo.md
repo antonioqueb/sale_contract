@@ -112,19 +112,20 @@ class SaleOrder(models.Model):
 <odoo>
     <data>
 
-        <!-- Acción que abre la vista de contratos -->
+        <!-- ACCIÓN QUE ABRE LA LISTA/FORMULARIO -->
         <record id="action_sale_contracts" model="ir.actions.act_window">
             <field name="name">Contratos de venta</field>
             <field name="res_model">sale.contract</field>
-            <field name="view_mode">tree,form</field>
+            <!-- Usa “list,form” para coincidir con la vista lista -->
+            <field name="view_mode">list,form</field>
         </record>
 
-        <!-- Menú principal -->
+        <!-- MENÚ PRINCIPAL -->
         <menuitem id="menu_contract_root"
                   name="Contratos"
                   sequence="50"/>
 
-        <!-- Submenú -->
+        <!-- SUBMENÚ -->
         <menuitem id="menu_sale_contract"
                   name="Contratos de venta"
                   parent="menu_contract_root"
@@ -141,27 +142,29 @@ class SaleOrder(models.Model):
 <odoo>
     <data>
 
-        <!-- Vista LISTA (antes “tree”) -->
+        <!-- VISTA LISTA -->
         <record id="view_sale_contract_list" model="ir.ui.view">
             <field name="name">sale.contract.list</field>
             <field name="model">sale.contract</field>
-            <field name="type">list</field>   <!-- 👈 cambio clave -->
+            <!-- Tipo correcto en Odoo 18 -->
+            <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree string="Contratos de venta">
+                <!-- El nodo raíz debe llamarse <list>, no <tree> -->
+                <list string="Contratos de venta">
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
-        <!-- Vista FORMULARIO -->
+        <!-- VISTA FORMULARIO -->
         <record id="view_sale_contract_form" model="ir.ui.view">
             <field name="name">sale.contract.form</field>
             <field name="model">sale.contract</field>
-            <field name="type">form</field>   <!-- 👈 especificado -->
+            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Contrato de venta">
                     <header>
@@ -188,7 +191,8 @@ class SaleOrder(models.Model):
 
                         <notebook>
                             <page string="Residuos autorizados">
-                                <field name="line_ids" context="{'default_contract_id': active_id}">
+                                <field name="line_ids"
+                                       context="{'default_contract_id': active_id}">
                                     <tree editable="bottom">
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
