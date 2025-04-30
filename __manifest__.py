@@ -7,6 +7,7 @@
     "category": "Sales",
     "depends": ["sale"],
     "data": [
+        "security/ir.model.access.csv", 
         "views/sale_contract_menus.xml",
         "views/sale_contract_views.xml",
         # Se omiten reglas de seguridad para simplificar la demo
