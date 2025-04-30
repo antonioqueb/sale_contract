@@ -2,27 +2,29 @@
 <odoo>
     <data>
 
-        <!-- Vista LISTA (antes “tree”) -->
+        <!-- VISTA LISTA -->
         <record id="view_sale_contract_list" model="ir.ui.view">
             <field name="name">sale.contract.list</field>
             <field name="model">sale.contract</field>
-            <field name="type">list</field>   <!-- 👈 cambio clave -->
+            <!-- Tipo correcto en Odoo 18 -->
+            <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree string="Contratos de venta">
+                <!-- El nodo raíz debe llamarse <list>, no <tree> -->
+                <list string="Contratos de venta">
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
-        <!-- Vista FORMULARIO -->
+        <!-- VISTA FORMULARIO -->
         <record id="view_sale_contract_form" model="ir.ui.view">
             <field name="name">sale.contract.form</field>
             <field name="model">sale.contract</field>
-            <field name="type">form</field>   <!-- 👈 especificado -->
+            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Contrato de venta">
                     <header>
@@ -49,7 +51,8 @@
 
                         <notebook>
                             <page string="Residuos autorizados">
-                                <field name="line_ids" context="{'default_contract_id': active_id}">
+                                <field name="line_ids"
+                                       context="{'default_contract_id': active_id}">
                                     <tree editable="bottom">
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
