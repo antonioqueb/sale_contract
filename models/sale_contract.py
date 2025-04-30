@@ -6,7 +6,10 @@ class SaleContract(models.Model):
     _name = "sale.contract"
     _description = "Contrato de venta"
 
-    name = fields.Char(string="Referencia", copy=False, default=lambda self: _("Nuevo"))
+    name = fields.Char(
+        string="Referencia", copy=False, readonly=True,
+        default=lambda self: _("Nuevo")
+    )
     partner_id = fields.Many2one("res.partner", string="Cliente", required=True)
     date_start = fields.Date(string="Vigencia desde", default=fields.Date.context_today)
     date_end   = fields.Date(string="Vigencia hasta")
@@ -22,6 +25,12 @@ class SaleContract(models.Model):
         "contract_id",
         string="Residuos autorizados"
     )
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _("Nuevo")) == _("Nuevo"):
+            vals['name'] = self.env['ir.sequence'].next_by_code('sale.contract') or _("Nuevo")
+        return super(SaleContract, self).create(vals)
 
     # -- Acciones -----------------------------------------------------------
     def action_confirm(self):
@@ -62,7 +71,6 @@ class SaleContract(models.Model):
             "res_id": order.id,
         }
 
-    # -- Auxiliar: caducar automáticamente (opcional) -----------------------
     @api.model
     def _cron_expire_contracts(self):
         today = date.today()

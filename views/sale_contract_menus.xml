@@ -13,7 +13,11 @@
         <!-- MENÚ PRINCIPAL -->
         <menuitem id="menu_contract_root"
                   name="Contratos"
-                  sequence="50"/>
+                  sequence="50"
+                  
+                  
+                  />
+
 
         <!-- SUBMENÚ -->
         <menuitem id="menu_sale_contract"

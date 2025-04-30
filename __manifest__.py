@@ -8,6 +8,7 @@
     "depends": ["sale"],
     "data": [
         "security/ir.model.access.csv", 
+        "data/contract_sequence.xml",
         "views/sale_contract_menus.xml",
         "views/sale_contract_views.xml",
         # Se omiten reglas de seguridad para simplificar la demo
