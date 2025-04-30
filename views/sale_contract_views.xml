@@ -49,9 +49,8 @@
 
                         <notebook>
                             <page string="Residuos autorizados">
-                                <field name="line_ids"
-                                       context="{'default_contract_id': active_id}">
-                                    <!-- ⬇️ Cambiado <tree> → <list> -->
+                                <!-- ‼️ Sin atributo context -->
+                                <field name="line_ids">
                                     <list editable="bottom">
                                         <field name="product_id"/>
                                         <field name="price_unit"/>
