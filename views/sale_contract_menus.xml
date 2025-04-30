@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Menú principal -->
-    <menuitem id="menu_contract_root"
-              name="Contratos"
-              sequence="50"
-              icon="fa-file-contract"/>
+    <data>
 
-    <!-- Submenú -->
-    <menuitem id="menu_sale_contract"
-              name="Contratos de venta"
-              parent="menu_contract_root"
-              action="action_sale_contracts"
-              sequence="1"/>
+        <!-- Acción que abre la vista de contratos -->
+        <record id="action_sale_contracts" model="ir.actions.act_window">
+            <field name="name">Contratos de venta</field>
+            <field name="res_model">sale.contract</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menú principal -->
+        <menuitem id="menu_contract_root"
+                  name="Contratos"
+                  sequence="50"/>
+
+        <!-- Submenú -->
+        <menuitem id="menu_sale_contract"
+                  name="Contratos de venta"
+                  parent="menu_contract_root"
+                  action="action_sale_contracts"
+                  sequence="1"/>
+
+    </data>
 </odoo>
