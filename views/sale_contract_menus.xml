@@ -2,18 +2,18 @@
 <odoo>
     <data>
 
-        <!-- ACCIÓN -->
+        <!-- ACCIÓN QUE ABRE LA LISTA/FORMULARIO -->
         <record id="action_sale_contracts" model="ir.actions.act_window">
             <field name="name">Contratos de venta</field>
             <field name="res_model">sale.contract</field>
+            <!-- Usa “list,form” para coincidir con la vista lista -->
             <field name="view_mode">list,form</field>
         </record>
 
-        <!-- MENÚ PRINCIPAL como aplicación -->
+        <!-- MENÚ PRINCIPAL -->
         <menuitem id="menu_contract_root"
                   name="Contratos"
-                  sequence="50"
-                  app="true"/>     <!-- ← clave para que aparezca en la barra -->
+                  sequence="50"/>
 
         <!-- SUBMENÚ -->
         <menuitem id="menu_sale_contract"
