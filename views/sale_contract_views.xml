@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <!-- VISTA LISTA PRINCIPAL -->
+        <!-- LISTA PRINCIPAL -->
         <record id="view_sale_contract_list" model="ir.ui.view">
             <field name="name">sale.contract.list</field>
             <field name="model">sale.contract</field>
@@ -18,7 +18,7 @@
             </field>
         </record>
 
-        <!-- VISTA FORMULARIO -->
+        <!-- FORMULARIO -->
         <record id="view_sale_contract_form" model="ir.ui.view">
             <field name="name">sale.contract.form</field>
             <field name="model">sale.contract</field>
@@ -26,15 +26,13 @@
             <field name="arch" type="xml">
                 <form string="Contrato de venta">
                     <header>
+                        <!-- Botones siempre visibles (sin states/attrs) -->
                         <button name="action_confirm" type="object"
-                                states="draft" class="btn-primary"
-                                string="Aprobar"/>
+                                class="btn-primary" string="Aprobar"/>
                         <button name="action_generate_service" type="object"
-                                states="active" class="btn-success"
-                                string="Generar Servicio"/>
+                                class="btn-success" string="Generar Servicio"/>
                         <button name="action_generate_excess" type="object"
-                                states="active" class="btn-secondary"
-                                string="Generar Excedente"/>
+                                class="btn-secondary" string="Generar Excedente"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,active,expired,cancelled"/>
                     </header>
@@ -49,7 +47,6 @@
 
                         <notebook>
                             <page string="Residuos autorizados">
-                                <!-- ‼️ Sin atributo context -->
                                 <field name="line_ids">
                                     <list editable="bottom">
                                         <field name="product_id"/>
