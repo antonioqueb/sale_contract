@@ -4,8 +4,7 @@
     <menuitem id="menu_contract_root"
               name="Contratos"
               sequence="50"
-              icon="fa-file-contract"
-              web_icon="sale,static/description/icon.svg"/>
+              icon="fa-file-contract"/>
 
     <!-- Submenú -->
     <menuitem id="menu_sale_contract"
